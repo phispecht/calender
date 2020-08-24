@@ -66,6 +66,28 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.get("/getItems", (req, res) => {
+    db.getItems()
+        .then((items) => {
+            res.json(items);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
+app.post("/addItem/:newItem", (req, res) => {
+    const newItem = req.params.newItem;
+
+    db.addItem(newItem)
+        .then((newItem) => {
+            res.json(newItem);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
 app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });

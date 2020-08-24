@@ -10,15 +10,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 const store = createStore(composeWithDevTools(applyMiddleware(reduxPromise)));
 
 let elem;
-if (location.pathname === "/welcome") {
+/* if (location.pathname === "/welcome") {
     /* elem = <Welcome />; */
-} else {
-    /*  init(store); */
-    elem = (
-        <Provider store={store}>
-            <App />;
-        </Provider>
-    );
-}
+/*} else { */
+/*  init(store); */
+elem = (
+    <Provider store={store}>
+        <App />;
+    </Provider>
+);
+/* } */
 
 ReactDOM.render(elem, document.querySelector("main"));
