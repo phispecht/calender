@@ -88,6 +88,18 @@ app.post("/addItem/:newItem", (req, res) => {
         });
 });
 
+app.post("/deleteItem/:deleteItem", (req, res) => {
+    const itemId = req.params.deleteItem;
+
+    db.deleteItem(itemId)
+        .then((item) => {
+            res.json(item);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
 app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });

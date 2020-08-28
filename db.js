@@ -17,3 +17,7 @@ exports.addItem = (newItem) => {
 exports.getItems = () => {
     return db.query(`SELECT * FROM items`, []);
 };
+
+exports.deleteItem = (itemId) => {
+    return db.query(`DELETE FROM items WHERE id = $1 RETURNING *`, [itemId]);
+};

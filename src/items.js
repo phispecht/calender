@@ -28,12 +28,32 @@ export default function Items() {
         }
     };
 
+    const deleteItem = (e) => {
+        if (e.type === "mousedown") {
+            const deleteItem = e.target.id;
+            axios
+                .post(`/deleteItem/` + deleteItem)
+                .then((item) => {
+                    setCount(count - 1);
+                    console.log(item);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    };
+
     return (
         <div>
             {items &&
                 items.map((element) => (
                     <p key={element.id}>
-                        <i className="fas fa-minus-circle"></i>&nbsp;&nbsp;
+                        <i
+                            id={element.id}
+                            onMouseDown={deleteItem}
+                            className="fas fa-minus-circle deleteItem"
+                        ></i>
+                        &nbsp;&nbsp;
                         {element.items}
                     </p>
                 ))}
