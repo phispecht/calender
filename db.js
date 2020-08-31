@@ -15,9 +15,23 @@ exports.addItem = (newItem) => {
 };
 
 exports.getItems = () => {
-    return db.query(`SELECT * FROM items`, []);
+    return db.query(`SELECT * FROM items ORDER BY id`, []);
 };
 
 exports.deleteItem = (itemId) => {
     return db.query(`DELETE FROM items WHERE id = $1 RETURNING *`, [itemId]);
+};
+
+exports.checkItem = (checkItem) => {
+    return db.query(`UPDATE items SET checked = $1 WHERE id = $2 RETURNING *`, [
+        true,
+        checkItem,
+    ]);
+};
+
+exports.uncheckItem = (uncheckItem) => {
+    return db.query(`UPDATE items SET checked = $1 WHERE id = $2 RETURNING *`, [
+        false,
+        uncheckItem,
+    ]);
 };

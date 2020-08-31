@@ -2,16 +2,59 @@ html {
     background: #50eb67;
 }
 
-.deleteItem {
+h1 {
+    color: #006ef0;
+}
+
+.fa-trash-alt {
     cursor: pointer;
+    color: #e02916;
 }
 
 p {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
+    font-size: 20px;
 }
 
 h1 {
     font-family: "Roboto", sans-serif;
     font-weight: 800;
+}
+
+.fa-check {
+    color: #006ef0;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+
+.shopping-list-container {
+    width: 280px;
+}
+
+.input {
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+}
+
+.input:focus {
+    outline: none;
+    border: 2px solid #006ef0;
+}
+
+.checked {
+    width: 200px;
+    height: 2px;
+    background-color: #006ef0;
+    border: none;
+    float: left;
+    margin-top: -12px;
+    margin-left: 30px;
 }

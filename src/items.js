@@ -9,6 +9,7 @@ export default function Items() {
     useEffect(() => {
         (async () => {
             const getItems = await axios.get(`/getItems`);
+            console.log(getItems.data.rows);
             setItems(getItems.data.rows);
         })();
     }, [count]);
@@ -16,15 +17,19 @@ export default function Items() {
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
             const newItem = item;
-            axios
-                .post(`/addItem/` + newItem)
-                .then((item) => {
-                    setCount(count + 1);
-                    console.log(item);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+            if (!item.startsWith("http")) {
+                axios
+                    .post(`/addItem/` + newItem)
+                    .then((item) => {
+                        setCount(count + 1);
+                        setItem("");
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+        } else {
+            console.log("wrong.");
         }
     };
 
@@ -43,6 +48,31 @@ export default function Items() {
         }
     };
 
+    const check = (e) => {
+        const checkItem = e.target.id;
+        if (e.target.checked == true) {
+            axios
+                .post(`/checkItem/` + checkItem)
+                .then((checkItem) => {
+                    setCount(count - 1);
+                    console.log("checkItem:", checkItem);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else {
+            axios
+                .post(`/uncheckItem/` + checkItem)
+                .then((uncheckItem) => {
+                    setCount(count + 1);
+                    console.log("uncheckItem:", uncheckItem);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    };
+
     return (
         <div>
             {items &&
@@ -51,13 +81,30 @@ export default function Items() {
                         <i
                             id={element.id}
                             onMouseDown={deleteItem}
-                            className="fas fa-minus-circle deleteItem"
+                            className="far fa-trash-alt"
                         ></i>
                         &nbsp;&nbsp;
-                        {element.items}
+                        <span>{element.items}</span>
+                        &nbsp;&nbsp;
+                        <input
+                            id={element.id}
+                            onClick={check}
+                            type="checkbox"
+                            defaultChecked={
+                                element.checked == true ? true : false
+                            }
+                        />
+                        {element.checked == true ? (
+                            <span className="checked"></span>
+                        ) : (
+                            ""
+                        )}
                     </p>
                 ))}
             <input
+                type="text"
+                className="input"
+                value={item}
                 onChange={(e) => setItem(e.target.value)}
                 onKeyPress={handleKeyPress}
             />

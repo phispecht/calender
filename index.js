@@ -4,32 +4,6 @@ const compression = require("compression");
 const db = require("./db");
 const cookieSession = require("cookie-session");
 const csurf = require("csurf");
-const { hash, compare } = require("./src/bc");
-
-/* const { s3Url } = require("./config.json"); */
-/* const s3 = require("./s3.js"); */
-/* const multer = require("multer");
-const uidSafe = require("uid-safe");
-const path = require("path");*/
-const { json } = require("express");
-
-/* const diskStorage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        callback(null, __dirname + "/uploads");
-    },
-    filename: function (req, file, callback) {
-        uidSafe(24).then(function (uid) {
-            callback(null, uid + path.extname(file.originalname));
-        });
-    },
-}); */
-
-/* const uploader = multer({
-    storage: diskStorage,
-    limits: {
-        fileSize: 2097152,
-    },
-}); */
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -94,6 +68,30 @@ app.post("/deleteItem/:deleteItem", (req, res) => {
     db.deleteItem(itemId)
         .then((item) => {
             res.json(item);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
+app.post("/checkItem/:checkItem", (req, res) => {
+    const checkItemId = req.params.checkItem;
+
+    db.checkItem(checkItemId)
+        .then((checkItem) => {
+            res.json(checkItem);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
+app.post("/uncheckItem/:checkItem", (req, res) => {
+    const uncheckItemId = req.params.checkItem;
+
+    db.uncheckItem(uncheckItemId)
+        .then((uncheckItem) => {
+            res.json(uncheckItem);
         })
         .catch((error) => {
             console.log(error);
