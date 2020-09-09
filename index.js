@@ -98,6 +98,26 @@ app.post("/uncheckItem/:checkItem", (req, res) => {
         });
 });
 
+app.post("/registration", (req, res) => {
+    const first = req.body.prename;
+    const last = req.body.lastname;
+    const email = req.body.email;
+    const password = req.body.password;
+    const passwordRepeat = req.body.passwordRepeat;
+
+    if (password == passwordRepeat) {
+        db.insertUser(first, last, email, password)
+            .then((userData) => {
+                res.json(userData);
+            })
+            .catch((err) => {
+                res.json(err);
+            });
+    } else {
+        res.json("wrongMatch");
+    }
+});
+
 app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });

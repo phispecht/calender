@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Register from "./register";
 import App from "./app";
 
 let elem;
-elem = <App />;
+elem = <Register />;
 
 ReactDOM.render(elem, document.querySelector("main"));

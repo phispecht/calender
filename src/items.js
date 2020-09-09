@@ -81,7 +81,7 @@ export default function Items() {
                         <i
                             id={element.id}
                             onMouseDown={deleteItem}
-                            className="far fa-trash-alt"
+                            className="fas fa-trash-alt"
                         ></i>
                         &nbsp;&nbsp;
                         <span>{element.items}</span>
