@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const compression = require("compression");
-let port;
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -10,10 +9,8 @@ if (process.env.NODE_ENV != "production") {
             target: "http://localhost:8081/",
         })
     );
-    port = 8080;
 } else {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
-    port = process.env.PORT;
 }
 
 app.use(compression());
@@ -30,6 +27,6 @@ app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.listen(port, function () {
+app.listen(process.env.PORT || 8080, function () {
     console.log("I'm listening.");
 });
