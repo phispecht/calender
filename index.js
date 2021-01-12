@@ -6,7 +6,7 @@ if (process.env.NODE_ENV != "production") {
     app.use(
         "/bundle.js",
         require("http-proxy-middleware")({
-            target: "http://localhost:8080/",
+            target: "http://localhost:8081/",
         })
     );
 } else {
@@ -27,6 +27,6 @@ app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.listen(8090, function () {
+app.listen(8080, function () {
     console.log("I'm listening.");
 });

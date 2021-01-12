@@ -269,6 +269,7 @@ nav .navElement [id] {
     padding-right: 5px;
     border-radius: 30px;
     margin-right: 10px;
+    line-height: 26px;
 }
 
 .modal {
