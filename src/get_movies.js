@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-let secrets;
-
-/* if (process.env.NODE_ENV == "production") {
-    secrets = process.env;
-} else {
-    secrets = require("./secrets.json");
-} */
+const config = require("../config");
 
 let count = 0;
 
@@ -18,8 +11,6 @@ export default function Get_Movies() {
     let [showModal, setShowModal] = useState(false);
     let [inputValue, setInputValue] = useState("");
     let [hoverID, setHoverID] = useState(0);
-    let optionDetails;
-    let optionDetailsHover;
     let trailerButton;
 
     const handleChange = (e) => {
@@ -38,19 +29,8 @@ export default function Get_Movies() {
         setMovieDetails("");
 
         if (id != undefined) {
-            optionDetails = {
-                method: "GET",
-                url:
-                    "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/" +
-                    id,
-                headers: {
-                    "x-rapidapi-key": secrets.key,
-                    "x-rapidapi-host": secrets.host,
-                },
-            };
-
             axios
-                .request(optionDetails)
+                .request(config.handleOptionDetails(id))
                 .then(function (response) {
                     setMovieDetails(response.data);
                 })
@@ -68,19 +48,8 @@ export default function Get_Movies() {
         count += 1;
         setHoverID(id);
 
-        optionDetailsHover = {
-            method: "GET",
-            url:
-                "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/" +
-                id,
-            headers: {
-                "x-rapidapi-key": secrets.key,
-                "x-rapidapi-host": secrets.host,
-            },
-        };
-
         axios
-            .request(optionDetailsHover)
+            .request(config.handleOptionDetailsHover(id))
             .then(function (response) {
                 setHoverID(id);
                 setHoverShow(true);
@@ -99,20 +68,9 @@ export default function Get_Movies() {
 
     ///////// search for movies ///////////
 
-    let options = {
-        method: "GET",
-        url:
-            "https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/" +
-            inputValue,
-        headers: {
-            "x-rapidapi-key": secrets.key,
-            "x-rapidapi-host": secrets.host,
-        },
-    };
-
     useEffect(() => {
         axios
-            .request(options)
+            .request(config.handleOptions(inputValue))
             .then(function (response) {
                 setMovie(response.data);
                 handleHover(response.data.titles[0].id);
