@@ -458,6 +458,10 @@ a {
         left: 115px;
     }
 
+    .trailerText {
+        padding-left: 20px;
+    }
+
     h2 {
         text-align: center;
     }
@@ -495,6 +499,14 @@ a {
 }
 
 @media screen and (max-width: 450px) {
+    .backgroundDetails div {
+        display: block;
+    }
+
+    .backgroundDetails div:not(:first-of-type) {
+        margin-left: 0;
+    }
+
     .backgroundTrailerButton {
         margin: 0 auto;
         margin-top: 30px;

@@ -6,7 +6,7 @@ if (process.env.NODE_ENV == "production") {
     secrets = require("./src/secrets.json");
 }
 
-exports.handleOptionDetails = (id) => {
+exports.handleOptionClick = (id) => {
     return (optionDetails = {
         method: "GET",
         url:
@@ -19,7 +19,7 @@ exports.handleOptionDetails = (id) => {
     });
 };
 
-exports.handleOptionDetailsHover = (id) => {
+exports.handleOptionHover = (id) => {
     return (optionDetailsHover = {
         method: "GET",
         url:
@@ -32,7 +32,7 @@ exports.handleOptionDetailsHover = (id) => {
     });
 };
 
-exports.handleOptions = (inputValue) => {
+exports.handleOptionSearch = (inputValue) => {
     return (options = {
         method: "GET",
         url:

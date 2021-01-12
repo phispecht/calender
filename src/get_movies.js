@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const config = require("../config");
 
 let count = 0;
 
 export default function Get_Movies() {
-    const [movie, setMovie] = useState();
+    const [movie, setMovie] = useState("");
     let [movieDetails, setMovieDetails] = useState("");
     let [hoverShow, setHoverShow] = useState(false);
     let [showModal, setShowModal] = useState(false);
@@ -28,39 +27,46 @@ export default function Get_Movies() {
         setShowModal(!showModal);
         setMovieDetails("");
 
+        console.log("id:", id);
+        console.log("hocerID:", hoverID);
+
         if (id != undefined) {
             axios
-                .request(config.handleOptionDetails(id))
-                .then(function (response) {
+                .get(`/handleClick/${id}`)
+                .then((response) => {
+                    console.log("click", response.data);
+                    setHoverID(id);
                     setMovieDetails(response.data);
                 })
-                .catch(function (error) {
-                    console.error(error);
+                .catch((error) => {
+                    console.log(error);
                 });
         }
     };
+
+    console.log("showModal:", showModal);
 
     //////// end /////////////
 
     //////// show details on hover and change details on input ////////
 
     const handleHover = (id) => {
-        count += 1;
+        count = 1;
         setHoverID(id);
 
         axios
-            .request(config.handleOptionDetailsHover(id))
-            .then(function (response) {
+            .get(`/handleHover/${id}`)
+            .then((response) => {
                 setHoverID(id);
                 setHoverShow(true);
                 setMovieDetails(response.data);
             })
-            .catch(function (error) {
-                console.error(error);
+            .catch((error) => {
+                console.log(error);
             });
     };
 
-    if (movie != undefined && count == 0) {
+    if (movie != undefined && movie != "" && count == 0) {
         handleHover(movie.titles[0].id);
     }
 
@@ -70,13 +76,13 @@ export default function Get_Movies() {
 
     useEffect(() => {
         axios
-            .request(config.handleOptions(inputValue))
-            .then(function (response) {
+            .get(`/handleSearch/${inputValue}`)
+            .then((response) => {
                 setMovie(response.data);
                 handleHover(response.data.titles[0].id);
             })
-            .catch(function (error) {
-                console.error(error);
+            .catch((error) => {
+                console.log(error);
             });
     }, [inputValue]);
 
@@ -276,9 +282,6 @@ export default function Get_Movies() {
                                                         : "-"}
                                                 </span>
                                             </span>
-                                            {/*  <span className="arrow">
-                                                Click for &#9660; more Details
-                                            </span> */}
                                         </>
                                     )}
                                 </div>
