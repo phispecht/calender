@@ -131,7 +131,7 @@ nav .navElement [id] {
 }
 
 .movieContainer:hover .hoverShow {
-    color: #166ddb;
+    color: #0366d6;
     display: block;
 }
 
@@ -155,7 +155,7 @@ nav .navElement [id] {
 }
 
 .modalDetails {
-    color: #166ddb;
+    color: #0366d6;
     margin-top: 10px;
     font-weight: 600;
 }
@@ -220,7 +220,7 @@ nav .navElement [id] {
 }
 
 .backgroundDetails {
-    color: blue;
+    color: #0366d6;
     font-weight: 400;
     font-size: 22px;
     margin-top: 20px;
@@ -241,8 +241,20 @@ nav .navElement [id] {
     margin-bottom: 20px;
 }
 
-.backgroundChild span:not(:first-of-type) {
-    padding-left: 40px;
+.backgroundDetails div:not(:first-of-type) {
+    margin-left: 40px;
+}
+
+.backgroundDetails div {
+    display: inline-block;
+}
+
+.backgroundDetails div:not(:first-of-type) {
+    margin-left: 20px;
+}
+
+.backgroundTrailerButton {
+    display: block;
 }
 
 .arrow {
@@ -257,19 +269,18 @@ nav .navElement [id] {
     margin-left: 20px;
 }
 
-.actors span:not(:first-of-type) {
-    margin-left: 0;
-}
-
-.actors span {
+.actors p {
+    display: inline-block;
     font-weight: 400;
-    background: #166ddb;
-    color: white;
+    background: #f1f8ff;
+    color: #0366d6;
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 30px;
-    margin-right: 10px;
-    line-height: 26px;
+    margin-right: 7px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    white-space: nowrap;
 }
 
 .modal {
@@ -398,11 +409,19 @@ a {
         width: 100%;
     }
 
+    .backgroundTrailerButton {
+        width: 300px;
+        margin-left: 20px;
+        margin-bottom: 40px;
+        margin-top: 20px;
+    }
+
     .backgroundChild:last-of-type {
         width: 100%;
         margin-left: 0;
         margin-top: 30px;
         padding: 0;
+        padding-bottom: 40px;
     }
 
     .backgroundTitle,
@@ -452,6 +471,13 @@ a {
     .modal {
         width: 100%;
         height: auto;
+    }
+
+    .backgroundTrailerButton {
+        width: 93%;
+        padding: 10px 0 10px 0;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     h1 {

@@ -192,25 +192,24 @@ export default function Get_Movies() {
                                     : "No description available"}
                             </div>
                             <div className="backgroundDetails">
-                                <span>
+                                <div>
                                     Rating:{" "}
                                     {movieDetails.rating
                                         ? movieDetails.rating
                                         : "-"}
-                                </span>
-                                <span>
+                                </div>
+                                <div>
                                     Lenght:{" "}
                                     {movieDetails.length
                                         ? movieDetails.length
                                         : "-"}
-                                </span>
-                                <span></span>
-                                <span>
+                                </div>
+                                <div>
                                     Year:{" "}
                                     {movieDetails.year
                                         ? movieDetails.year
                                         : "-"}
-                                </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -246,26 +245,26 @@ export default function Get_Movies() {
                                                         : "No description available"}
                                                 </div>
                                                 <div className="backgroundDetails">
-                                                    <span>
+                                                    <div>
                                                         Rating:{" "}
                                                         {movieDetails.rating
                                                             ? movieDetails.rating
                                                             : "-"}
-                                                    </span>
-                                                    <span>
+                                                    </div>
+                                                    <div>
                                                         Lenght:{" "}
                                                         {movieDetails.length
                                                             ? movieDetails.length
                                                             : "-"}
-                                                    </span>
-                                                    <span>
+                                                    </div>
+                                                    <div>
                                                         Year:{" "}
                                                         {movieDetails.year
                                                             ? movieDetails.year
                                                             : "-"}
-                                                    </span>
-                                                    {trailerButton}
+                                                    </div>
                                                 </div>
+                                                {trailerButton}
                                             </>
                                         )}
                                         {showModal && (
@@ -376,9 +375,9 @@ export default function Get_Movies() {
                                 <div className="actors">
                                     <h3>Actors</h3>
                                     {movieDetails.cast.map((element) => (
-                                        <span key={element.actor_id}>
+                                        <p key={element.actor_id}>
                                             {element.actor}
-                                        </span>
+                                        </p>
                                     ))}
                                 </div>
                             </div>
