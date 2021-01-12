@@ -27,14 +27,10 @@ export default function Get_Movies() {
         setShowModal(!showModal);
         setMovieDetails("");
 
-        console.log("id:", id);
-        console.log("hocerID:", hoverID);
-
         if (id != undefined) {
             axios
                 .get(`/handleClick/${id}`)
                 .then((response) => {
-                    console.log("click", response.data);
                     setHoverID(id);
                     setMovieDetails(response.data);
                 })
@@ -43,8 +39,6 @@ export default function Get_Movies() {
                 });
         }
     };
-
-    console.log("showModal:", showModal);
 
     //////// end /////////////
 
