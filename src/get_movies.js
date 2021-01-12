@@ -319,9 +319,9 @@ export default function Get_Movies() {
                                                         : "-"}
                                                 </span>
                                             </span>
-                                            {/* <span className="arrow">
-                        Click for &#9660; more Details
-                      </span> */}
+                                            {/*  <span className="arrow">
+                                                Click for &#9660; more Details
+                                            </span> */}
                                         </>
                                     )}
                                 </div>
