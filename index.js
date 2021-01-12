@@ -27,8 +27,6 @@ app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
-const port = process.env.PORT || 8080;
-
-app.listen(port, function () {
+app.listen(8080, function () {
     console.log("server listening.");
 });
