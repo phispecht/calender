@@ -122,7 +122,7 @@ export default function Get_Movies() {
             });
     }, [inputValue]);
 
-    //////////// end ///////////////
+    ///////////// end ///////////////
 
     const hideModalFunction = () => {
         setShowModal(false);
