@@ -3,11 +3,11 @@ import axios from "axios";
 
 let secrets;
 
-if (process.env.NODE_ENV == "production") {
+/* if (process.env.NODE_ENV == "production") {
     secrets = process.env;
 } else {
     secrets = require("./secrets.json");
-}
+} */
 
 let count = 0;
 
