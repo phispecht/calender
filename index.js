@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const compression = require("compression");
 const config = require("./config");
+const https = require("https");
 const axios = require("axios").default;
 
 if (process.env.NODE_ENV != "production") {
@@ -25,45 +26,23 @@ app.use(
     })
 );
 
-app.get("/handleClick/:id", (req, res) => {
-    const id = req.params.id;
-    const options = config.handleOptionClick(id);
-
-    axios
-        .request(options)
-        .then(function (response) {
-            res.json(response.data);
-        })
-        .catch(function (error) {
-            console.error(error);
-        });
+axios.defaults.httpsAgent = new https.Agent({
+    rejectUnauthorized:false,
 });
 
-app.get("/handleHover/:inputValue", (req, res) => {
-    const id = req.params.id;
-    const options = config.handleOptionHover(id);
+app.get("/getData", (req, res) => {
+    const options = config.handleOptionSearch();
+
+    console.log(options);
 
     axios
         .request(options)
         .then(function (response) {
+            console.log(response);
             res.json(response.data);
         })
         .catch(function (error) {
-            console.error(error);
-        });
-});
-
-app.get("/handleSearch/:inputValue", (req, res) => {
-    const input = req.params.inputValue;
-    const options = config.handleOptionSearch(input);
-
-    axios
-        .request(options)
-        .then(function (response) {
-            res.json(response.data);
-        })
-        .catch(function (error) {
-            console.error(error);
+            console.error("error:",error);
         });
 });
 

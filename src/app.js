@@ -1,10 +1,10 @@
 import React from "react";
-import Get_Movies from "./get_movies";
+import Calender from "./calender";
 
 export default function App() {
     return (
         <div>
-            <Get_Movies />
+            <Calender/>
         </div>
     );
 }
